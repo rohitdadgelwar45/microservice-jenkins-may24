@@ -17,6 +17,11 @@ pipeline{
             }
             
         }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t rohitdockerhub2002/cart-nodejs .'
+            }
+        }
         
     }
 } 
