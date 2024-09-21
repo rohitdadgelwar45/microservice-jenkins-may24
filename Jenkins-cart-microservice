@@ -26,6 +26,13 @@ pipeline{
                 }
             }
         }
+        stage('Create Docker Container') {
+            steps {
+             
+                    sh 'docker run -itd --name Nodejs rohitdockerhub2002/cart-nodejs:latest'
+                
+            }
+        }
         
     }
 } 
