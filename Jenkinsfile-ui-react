@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("Git Checkout"){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rohitdadgelwar45/microservice-jenkins-may24.git']])
+            }
+            
+        }
+        stage("Install npm"){
+            steps{
+                sh 'npm install'
+            }
+            
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t rohitdockerhub2002/ui-react ui-react'
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                withDockerRegistry(credentialsId: 'DockerHubCed', url: '') {
+                    sh 'docker push rohitdockerhub2002/cart-nodejs:latest'
+                }
+            }
+        }
+        stage('Create Docker Container') {
+            steps {
+             
+                    sh 'docker run -itd --name Nodejs rohitdockerhub2002/cart-nodejs:latest'
+                
+            }
+        }
+        
+    }
+} 
