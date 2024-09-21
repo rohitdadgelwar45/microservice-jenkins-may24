@@ -8,9 +8,10 @@ pipeline{
             }
             
         } 
-        stage("Install Flask"){
+        
+        stage("Build Image"){
             steps{
-                sh 'pip install flask'
+                sh 'docker build -t python-image'
             }
             
         }
