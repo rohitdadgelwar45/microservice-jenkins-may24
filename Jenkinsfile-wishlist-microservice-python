@@ -11,6 +11,7 @@ pipeline{
         
         stage("Build Image"){
             steps{
+                dir('wishlist-microservice-python')
                 sh 'docker build -t python-image .'
             }
             
