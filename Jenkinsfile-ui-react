@@ -16,20 +16,20 @@ pipeline{
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t rohitdockerhub2002/ui-react ui-react'
+                sh 'docker build -t rohitdockerhub2002/ui-react ui-web-app-reactjs'
             }
         }
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry(credentialsId: 'DockerHubCed', url: '') {
-                    sh 'docker push rohitdockerhub2002/cart-nodejs:latest'
+                    sh 'docker push rohitdockerhub2002/ui-react:latest'
                 }
             }
         }
         stage('Create Docker Container') {
             steps {
              
-                    sh 'docker run -itd --name Nodejs rohitdockerhub2002/cart-nodejs:latest'
+                    sh 'docker run -itd --name Nodejs rohitdockerhub2002/ui-react:latest:latest'
                 
             }
         }
