@@ -24,5 +24,12 @@ pipeline{
                 }
             }
         }
+        stage('Create Docker Container') {
+            steps {
+             
+                    sh 'docker run -itd --name wishlist-python rohitdockerhub2002/wishlist-microservice-python:latest'
+                
+            }
+        }
     }
 } 
