@@ -12,10 +12,17 @@ pipeline{
         stage("Build Image"){
             steps{
                 dir('wishlist-microservice-python'){
-                sh 'docker build -t python-image .'
+                sh 'docker build -t rohitdockerhub2002/wishlist-microservice-python .'
                 }
             }
             
+        }
+         stage('Push Docker Image') {
+            steps {
+                withDockerRegistry(credentialsId: 'DockerHubCed', url: '') {
+                    sh 'docker push rohitdockerhub2002/wishlist-microservice-python:latest'
+                }
+            }
         }
     }
 } 
