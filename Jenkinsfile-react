@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    tools{
+     NodeJS='nodejs'
+    }
 
     stages{
         stage("Git Checkout"){
